@@ -19,15 +19,22 @@
 #   * Added pre-check for required files
 # 02/17/17
 #   * Added missing dvFilter param to eth1 (missing in Nested ESXi OVA)
-
+[CmdletBinding()]
+param (
+        [System.String] $VIServer = "vcenter.primp-industries.com",
+        [System.String] $VIUsername = "administrator@vsphere.local",
+        [SecureString]  $VIPassword,
+        [ValidateSet("VCENTER","ESXI","WORKSTATION")]
+        [System.String] $DeploymentTarget = "VCENTER",
+        [ValidateScript({Test-Path -Type Leaf $_})]
+        [System.String] $yaml
+        )
 # Physical ESXi host or vCenter Server to deploy vSphere 6.0 lab
-$VIServer = "vcenter.primp-industries.com"
-$VIUsername = "administrator@vsphere.local"
-$VIPassword = "!!!MySuperDuperSecurePassword!!!"
+
 
 # Specifies whether deployment is to an ESXi host or vCenter Server
 # Use either ESXI or VCENTER
-$DeploymentTarget = "VCENTER"
+
 
 # Full Path to both the Nested ESXi 6.0 VA + extracted VCSA 6.0 ISO
 $NestedESXiApplianceOVA = "C:\Users\primp\Desktop\Nested_ESXi6.x_Appliance_Template_v5.ova"
