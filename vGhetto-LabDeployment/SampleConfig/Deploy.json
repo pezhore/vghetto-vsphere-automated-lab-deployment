@@ -1,0 +1,16 @@
+{
+    "VIConfig":  {
+                     "VIPlaintextPassword":  "mah password",
+                     "VIUsername":  "administrator@vsphere.local",
+                     "VIServer":  "viserver.local"
+                 },
+    "DeploymentConfig":  {
+                             "DeploymentType":  "Self-Managed",
+                             "Version":  "6.0",
+                             "Type":  "Workstation"
+                         },
+    "Binaries":  {
+                     "VCSAInstallerPath":  "C:\\Users\\primp\\Desktop\\VMware-VCSA-all-6.0.0-3634788",
+                     "NestedESXiApplianceOVA":  "C:\\Users\\primp\\Desktop\\Nested_ESXi6.x_Appliance_Template_v5.ova"
+                 }
+}
