@@ -23,9 +23,6 @@ GUID = '3825c5c5-7876-444e-87cd-2dcb85adf8c8'
 # Author of this module
 Author = 'William Lab, Brian Marsh'
 
-# Company or vendor of this module
-CompanyName = 'EHI'
-
 # Copyright statement for this module
 Copyright = '(c) 2017 William Lab, Brian Marsh. All rights reserved.'
 
