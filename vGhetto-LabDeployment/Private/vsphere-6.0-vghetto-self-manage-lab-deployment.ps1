@@ -22,7 +22,7 @@
 [CmdletBinding()]
 param (
         [ValidateScript({Test-Path -Type Leaf $_})]
-        [System.String] $yaml
+        [PSCustomObject] $Props
         )
 # Physical ESXi host or vCenter Server to deploy vSphere 6.0 lab
 
@@ -32,8 +32,8 @@ param (
 
 
 # Full Path to both the Nested ESXi 6.0 VA + extracted VCSA 6.0 ISO
-$NestedESXiApplianceOVA = "C:\Users\primp\Desktop\Nested_ESXi6.x_Appliance_Template_v5.ova"
-$VCSAInstallerPath = "C:\Users\primp\Desktop\VMware-VCSA-all-6.0.0-3634788"
+$NestedESXiApplianceOVA = $Props.Binaries.NestedESXiApplianceOVA
+$VCSAInstallerPath = $Props.Binaries.VCSAInstallerPath
 
 # Nested ESXi VMs to deploy
 $NestedESXiHostnameToIPs = @{
@@ -101,20 +101,6 @@ $configureVSANDiskGroups = 1
 $clearVSANHealthCheckAlarm = 1
 
 $StartTime = Get-Date
-
-Function My-Logger {
-    param(
-    [Parameter(Mandatory=$true)]
-    [String]$message
-    )
-
-    $timeStamp = Get-Date -Format "MM-dd-yyyy_hh-mm-ss"
-
-    Write-Host -NoNewline -ForegroundColor White "[$timestamp]"
-    Write-Host -ForegroundColor Green " $message"
-    $logMessage = "[$timeStamp] $message"
-    $logMessage | Out-File -Append -LiteralPath $verboseLogFile
-}
 
 if($preCheck -eq 1) {
     if(!(Test-Path $NestedESXiApplianceOVA)) {
